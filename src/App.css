@@ -8,18 +8,53 @@
 .App{
   background-color: #fafafa;
   width: 100%;
-  height: 100vh;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .app-header{
   background-color: #fff;
   padding: 20px;
-  font-family: 'Lobster', sans-serif;
   font-size: 20px;
   border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+
+}
+
+.font-style{
+  font-family: 'Lobster', sans-serif;
+  color: orangered;
 }
 
 .app-signup{
   display: flex;
   flex-direction: column;
+}
+
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  width: 60%;
+  height: 87.5vh;
+}
+
+.post-container{
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center img{
+  width: 50%;
 }

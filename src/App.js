@@ -50,7 +50,7 @@ function App() {
   const classes = useStyles()
 
   useEffect(()=>{
-    db.collection('posts').onSnapshot(snapshot =>{
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot =>{
       setPosts(snapshot.docs.map(doc => (
         {
         id : doc.id, 
@@ -107,10 +107,7 @@ function App() {
   return (
     <div className="App">
 
-     {
-        user?.displayName ?  <ImageUpload username={user.displayName}/>
-        : <h3>Sorry you need to login to upload</h3>
-      } 
+  
       <Modal
         className="sign-up-modal"
         open={open}
@@ -121,7 +118,7 @@ function App() {
       <div style={modalStyle} className={classes.paper}>
       <center>
       <form className="app-signup">
-      <h2 className="app-header">Photogram</h2>
+      <h2 className="font-style">Photogram</h2>
       <h2 className="">Sign Up</h2>
      
       <Input
@@ -160,7 +157,7 @@ function App() {
       <div style={modalStyle} className={classes.paper}>
       <center>
       <form className="app-signup">
-      <h2 className="app-header">Photogram</h2>
+      <h2 className="font-style">Photogram</h2>
       <h2>Sign In</h2>
      
     
@@ -183,24 +180,34 @@ function App() {
     </div>
       </Modal>
 
-      <div className="app-header">
+      <div className="app-header font-style">
         <h2>Photogram</h2>
-      </div>
-    {user 
+        {user 
     ?   <Button onClick={()=> auth.signOut()}>Log Out</Button> 
       : ( 
         <div className="app-login-container">
         <Button onClick={()=> setOpen(true)}>Sign up</Button>
+        Or
         <Button onClick={()=> setSignInOpen(true)}>Sign In</Button>
         </div>
         )
       
       }
-      
+      </div>
+   
+      <div className="post-container">   
       {
-       posts.map(post => <Post key={post.id} post={post.post}/>) 
+    user ?   posts.map(post => <Post postId={post.id} key={post.id} post={post.post}/> ) 
+    : <div className="center">
+        <img src="./images/Login-amico.png"/>
+           Please Login or Sign Up for View Post
+    </div>
       }
-
+      </div>
+    {
+        user?.displayName &&  <ImageUpload username={user.displayName}/>
+        
+      } 
     </div>
   );
 }

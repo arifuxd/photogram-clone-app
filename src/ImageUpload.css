@@ -1,0 +1,17 @@
+.image-upload{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px auto;
+    margin-bottom: 0;
+    background-color: #fff;
+    z-index: 1000;
+    border-top: 1px solid lightgray;
+    position: fixed;
+    bottom: 0;
+
+}
+
+.image-loader{
+    width: 100%;
+}
